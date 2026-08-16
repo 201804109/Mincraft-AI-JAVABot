@@ -1,0 +1,5 @@
+module.exports = {
+    MAX_SEARCH_NODES: 100000,
+    MAX_SEARCH_DISTANCE: 128,
+    WAYPOINT_THRESHOLD: 1.5
+}

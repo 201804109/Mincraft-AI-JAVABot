@@ -1,0 +1,2978 @@
+{
+  "blocks": {
+    "13,-73,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-73,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-73,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-73,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-73,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-72,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-72,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-72,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-72,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-72,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-71,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-71,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-71,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-71,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-71,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-70,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-70,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-70,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-70,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-70,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-69,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-69,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-69,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-69,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-69,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-68,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-68,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-68,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-68,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-68,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-67,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-67,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-67,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-67,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-67,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-66,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-66,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-66,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-66,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-66,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-65,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-65,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-65,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-65,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-65,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-64,0": {
+      "type": "bedrock",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-64,1": {
+      "type": "bedrock",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-64,2": {
+      "type": "bedrock",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-64,3": {
+      "type": "bedrock",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-64,4": {
+      "type": "bedrock",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-63,0": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-63,1": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-63,2": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-63,3": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-63,4": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-62,0": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-62,1": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-62,2": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-62,3": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-62,4": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-61,0": {
+      "type": "grass_block",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-61,1": {
+      "type": "grass_block",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-61,2": {
+      "type": "grass_block",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-61,3": {
+      "type": "grass_block",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-61,4": {
+      "type": "grass_block",
+      "state": "SOLID",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-60,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-60,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-60,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-60,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-60,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-59,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-59,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-59,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-59,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-59,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-58,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-58,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-58,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-58,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-58,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-57,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-57,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-57,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-57,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-57,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-56,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-56,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-56,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-56,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-56,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-55,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-55,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-55,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-55,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-55,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-54,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-54,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-54,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-54,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-54,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-53,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-53,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-53,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-53,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-53,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-52,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-52,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-52,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-52,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-52,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-51,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-51,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-51,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-51,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-51,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-50,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-50,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-50,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-50,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-50,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-49,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-49,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-49,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-49,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-49,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-48,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-48,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-48,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-48,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-48,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-47,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-47,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-47,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-47,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-47,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-46,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-46,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-46,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-46,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-46,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-45,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-45,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-45,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-45,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-45,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-44,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-44,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-44,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-44,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-44,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193118,
+      "confidence": 1
+    },
+    "13,-43,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "13,-43,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "13,-43,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "13,-43,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "13,-43,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "13,-42,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "13,-42,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "13,-42,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "13,-42,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "13,-42,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "13,-41,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "13,-41,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "13,-41,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "13,-41,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "13,-41,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-73,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-73,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-73,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-73,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-73,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-72,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-72,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-72,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-72,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-72,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-71,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-71,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-71,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-71,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-71,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-70,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-70,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-70,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-70,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-70,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-69,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-69,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-69,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-69,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-69,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-68,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-68,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-68,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-68,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-68,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-67,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-67,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-67,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-67,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-67,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-66,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-66,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-66,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-66,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-66,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-65,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-65,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-65,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-65,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-65,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-64,0": {
+      "type": "bedrock",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-64,1": {
+      "type": "bedrock",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-64,2": {
+      "type": "bedrock",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-64,3": {
+      "type": "bedrock",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-64,4": {
+      "type": "bedrock",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-63,0": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-63,1": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-63,2": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-63,3": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-63,4": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-62,0": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-62,1": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-62,2": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-62,3": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-62,4": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-61,0": {
+      "type": "grass_block",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-61,1": {
+      "type": "grass_block",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-61,2": {
+      "type": "grass_block",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-61,3": {
+      "type": "grass_block",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-61,4": {
+      "type": "grass_block",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-60,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-60,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-60,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-60,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-60,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-59,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-59,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-59,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-59,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-59,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-58,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-58,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-58,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-58,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-58,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-57,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-57,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-57,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-57,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-57,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-56,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-56,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-56,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-56,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-56,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-55,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-55,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-55,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-55,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-55,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-54,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-54,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-54,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-54,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-54,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-53,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-53,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-53,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-53,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-53,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-52,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-52,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-52,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-52,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-52,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-51,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-51,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-51,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-51,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-51,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-50,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-50,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-50,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-50,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-50,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-49,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-49,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-49,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-49,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-49,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-48,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-48,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-48,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-48,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-48,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-47,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-47,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-47,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-47,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-47,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-46,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-46,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-46,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-46,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-46,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-45,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-45,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-45,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-45,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-45,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-44,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-44,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-44,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-44,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-44,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-43,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-43,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-43,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-43,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-43,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-42,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-42,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-42,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-42,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-42,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-41,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-41,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-41,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-41,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "14,-41,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-73,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-73,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-73,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-73,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-73,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-72,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-72,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-72,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-72,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-72,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-71,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-71,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-71,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-71,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-71,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-70,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-70,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-70,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-70,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-70,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-69,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-69,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-69,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-69,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-69,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-68,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-68,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-68,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-68,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-68,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-67,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-67,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-67,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-67,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-67,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-66,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-66,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-66,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-66,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-66,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-65,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-65,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-65,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-65,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-65,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-64,0": {
+      "type": "bedrock",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-64,1": {
+      "type": "bedrock",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-64,2": {
+      "type": "bedrock",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-64,3": {
+      "type": "bedrock",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-64,4": {
+      "type": "bedrock",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-63,0": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-63,1": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-63,2": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-63,3": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-63,4": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-62,0": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-62,1": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-62,2": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-62,3": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-62,4": {
+      "type": "dirt",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-61,0": {
+      "type": "grass_block",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-61,1": {
+      "type": "grass_block",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-61,2": {
+      "type": "grass_block",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-61,3": {
+      "type": "grass_block",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-61,4": {
+      "type": "grass_block",
+      "state": "SOLID",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-60,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-60,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-60,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-60,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-60,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-59,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-59,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-59,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-59,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-59,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-58,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-58,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-58,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-58,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-58,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-57,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-57,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-57,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-57,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-57,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193119,
+      "confidence": 1
+    },
+    "15,-56,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-56,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-56,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-56,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-56,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-55,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-55,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-55,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-55,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-55,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-54,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-54,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-54,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-54,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-54,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-53,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-53,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-53,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-53,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-53,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-52,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-52,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-52,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-52,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-52,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-51,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-51,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-51,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-51,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-51,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-50,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-50,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-50,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-50,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-50,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-49,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-49,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-49,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-49,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-49,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-48,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-48,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-48,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-48,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-48,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-47,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-47,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-47,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-47,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-47,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-46,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-46,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-46,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-46,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-46,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-45,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-45,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-45,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-45,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-45,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-44,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-44,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-44,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-44,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-44,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-43,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-43,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-43,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-43,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-43,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-42,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-42,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-42,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-42,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-42,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-41,0": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-41,1": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-41,2": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-41,3": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    },
+    "15,-41,4": {
+      "type": "air",
+      "state": "AIR",
+      "lastSeen": 1786863193120,
+      "confidence": 1
+    }
+  },
+  "lastSeen": 1786863193120,
+  "lastAccess": 1786863193120,
+  "confidence": 1,
+  "dirty": true
+}
