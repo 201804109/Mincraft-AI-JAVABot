@@ -1,3 +1,5 @@
+const { executeAction } = require('./executor')
+
 module.exports = function(bot, parser) {
 
     bot.on('chat', async (username, message) => {
@@ -11,7 +13,8 @@ module.exports = function(bot, parser) {
 
         // 把聊天内容交给 parser
         try {
-            await parser(message)
+            const command = await parser(message, bot)
+            await executeAction(bot, command)
         } catch (error) {
             console.error('聊天命令执行失败:', error)
         }

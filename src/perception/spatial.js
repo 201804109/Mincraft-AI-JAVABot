@@ -175,12 +175,6 @@ function getIntermediatePositions(from, changedAxes) {
 }
 
 function blockMove(from, to, reason, block) {
-    console.log('[MOVE BLOCKED]')
-    console.log('from:', formatPosition(from))
-    console.log('to:', formatPosition(to))
-    console.log('reason:', reason)
-    console.log('block:', block)
-
     return false
 }
 
