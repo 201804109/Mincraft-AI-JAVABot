@@ -1,18 +1,42 @@
 const { placeBlock } = require('../skills/block_manipulation/block_place')
+const { breakBlock } = require('../skills/block_manipulation/block_break')
 
 async function executeAction(bot, command) {
-    if (!command || command.action !== 'place') {
+    if (!command) {
         return null
     }
 
-    const result = await placeBlock(
-        bot,
-        command.block,
-        command.position
-    )
+    if (command.action === 'place') {
+        const result = await placeBlock(
+            bot,
+            command.block,
+            command.position
+        )
 
-    printPlaceResult(result)
-    return result
+        printPlaceResult(result)
+        return result
+    }
+
+    if (command.action === 'break') {
+        const result = await breakBlock(bot, command.position)
+
+        printBreakResult(result)
+        return result
+    }
+
+    return null
+}
+
+function printBreakResult(result) {
+    if (!result.success) {
+        console.log('破坏失败:')
+        console.log(result.reason)
+        return
+    }
+
+    console.log('破坏成功:')
+    console.log('坐标:')
+    console.log(`${result.position.x} ${result.position.y} ${result.position.z}`)
 }
 
 function printPlaceResult(result) {

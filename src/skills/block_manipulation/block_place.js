@@ -1,5 +1,6 @@
 const { Vec3 } = require('vec3')
 const navigation = require('../move/navigation')
+const itemManager = require('../item/item_manager')
 
 const VIEW_STABILIZATION_DELAY = 300
 const PLACEMENT_VERIFY_DELAY = 200
@@ -101,18 +102,20 @@ async function placeBlock(bot, blockName, targetPosition) {
         return fail('NO_REFERENCE_BLOCK')
     }
 
-    const item = bot.inventory.items().find(candidate => candidate.name === blockName)
-    if (!item) {
-        return fail('NO_BLOCK_IN_INVENTORY')
+    console.log('Preparing block:')
+    console.log(blockName)
+
+    const itemReady = await itemManager.ensureItem(bot, blockName, 1)
+    if (!itemReady) {
+        return fail('ITEM_ACQUIRE_FAILED')
     }
 
-    try {
-        await bot.equip(item, 'hand')
-    } catch (error) {
-        console.error('[BlockPlace] Equip error:', error)
+    const equipped = await itemManager.equipItem(bot, blockName)
+    if (!equipped) {
         return fail('EQUIP_FAILED')
     }
 
+    console.log('Equipped.')
     console.log('Placing...')
 
     try {
@@ -342,10 +345,7 @@ function isValidBot(bot) {
         bot.entity.position &&
         typeof bot.lookAt === 'function' &&
         typeof bot.blockAt === 'function' &&
-        typeof bot.placeBlock === 'function' &&
-        typeof bot.equip === 'function' &&
-        bot.inventory &&
-        typeof bot.inventory.items === 'function'
+        typeof bot.placeBlock === 'function'
 }
 
 function isValidBlockPosition(position) {
