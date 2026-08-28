@@ -6,8 +6,11 @@ const scanner = require('./src/perception/scanner')
 const worldMap = require('./src/perception/map')
 const worldSync = require('./src/perception/world_sync')
 const storage = require('./src/perception/storage')
+const surfaceMap = require('./src/map_analysis/surface/map')
 const parser = require('./src/chat/parser')
 const chatListener = require('./src/chat/listener')
+
+let surfaceSubscriptions = []
 
 const bot = mineflayer.createBot({
     host: '127.0.0.1',
@@ -28,7 +31,18 @@ bot.on('login', ()=>{
 bot.on('spawn', ()=>{
     console.log("进入世界")
     bot.chat("Hello!")
+    disconnectSurfaceMap()
     worldMap.init()
+    surfaceMap.init(worldMap)
+    surfaceSubscriptions = [
+        worldMap.onBlockChanged(({ x, z }) => surfaceMap.markDirty(x, z)),
+        worldMap.onChunkChanged(({ chunkX, chunkZ }) => {
+            surfaceMap.markChunkDirty(chunkX, chunkZ)
+        }),
+        worldMap.onChunkRemoved(({ chunkX, chunkZ }) => {
+            surfaceMap.removeChunk(chunkX, chunkZ)
+        })
+    ]
     const savedMap = storage.load()
     worldMap.loadMap(savedMap)
     scanner.init(bot)
@@ -57,3 +71,11 @@ bot.on('error',(err)=>{
     console.log(err)
 
 })
+
+function disconnectSurfaceMap() {
+    for (const unsubscribe of surfaceSubscriptions) {
+        unsubscribe()
+    }
+
+    surfaceSubscriptions = []
+}

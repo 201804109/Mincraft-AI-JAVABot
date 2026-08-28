@@ -1,6 +1,9 @@
 const CHUNK_SIZE = 16
 const DEFAULT_EXPIRE_TIME = 30 * 60 * 1000
 const AIR_TYPES = new Set(['air', 'cave_air', 'void_air'])
+const blockChangedListeners = new Set()
+const chunkChangedListeners = new Set()
+const chunkRemovedListeners = new Set()
 
 class ChunkMap {
     constructor(options = {}) {
@@ -170,6 +173,12 @@ function init(options = {}) {
 
 function updateBlock(x, y, z, type) {
     chunkMap.updateBlock(x, y, z, type)
+    notifyListeners(blockChangedListeners, {
+        x: Math.floor(x),
+        y: Math.floor(y),
+        z: Math.floor(z),
+        type
+    })
 }
 
 function getBlock(x, y, z) {
@@ -177,11 +186,22 @@ function getBlock(x, y, z) {
 }
 
 function updateChunk(chunkX, chunkZ, data) {
+    if (!data || typeof data !== 'object') {
+        return
+    }
+
     chunkMap.updateChunk(chunkX, chunkZ, data)
+    notifyListeners(chunkChangedListeners, { chunkX, chunkZ })
 }
 
 function removeChunk(chunkX, chunkZ) {
-    return chunkMap.removeChunk(chunkX, chunkZ)
+    const removed = chunkMap.removeChunk(chunkX, chunkZ)
+
+    if (removed) {
+        notifyListeners(chunkRemovedListeners, { chunkX, chunkZ })
+    }
+
+    return removed
 }
 
 function getNearbyChunks(x, z, radius) {
@@ -189,7 +209,13 @@ function getNearbyChunks(x, z, radius) {
 }
 
 function cleanup(position) {
-    return chunkMap.cleanup(position)
+    const removed = chunkMap.cleanup(position)
+
+    for (const chunk of removed) {
+        notifyListeners(chunkRemovedListeners, chunk)
+    }
+
+    return removed
 }
 
 function getChunk(chunkX, chunkZ) {
@@ -230,6 +256,18 @@ function getArea(center, radius) {
 
 function getMap() {
     return Object.fromEntries(chunkMap.chunks)
+}
+
+function onBlockChanged(listener) {
+    return addListener(blockChangedListeners, listener)
+}
+
+function onChunkChanged(listener) {
+    return addListener(chunkChangedListeners, listener)
+}
+
+function onChunkRemoved(listener) {
+    return addListener(chunkRemovedListeners, listener)
 }
 
 function loadMap(data) {
@@ -279,6 +317,25 @@ function distanceToChunk(x, z, chunkX, chunkZ) {
     return Math.sqrt(dx * dx + dz * dz)
 }
 
+function addListener(listeners, listener) {
+    if (typeof listener !== 'function') {
+        throw new Error('World Map listener必须是函数')
+    }
+
+    listeners.add(listener)
+    return () => listeners.delete(listener)
+}
+
+function notifyListeners(listeners, change) {
+    for (const listener of listeners) {
+        try {
+            listener(change)
+        } catch (error) {
+            console.error('[world-map] change listener failed:', error)
+        }
+    }
+}
+
 module.exports = {
     ChunkMap,
     init,
@@ -292,5 +349,8 @@ module.exports = {
     update,
     getArea,
     getMap,
-    loadMap
+    loadMap,
+    onBlockChanged,
+    onChunkChanged,
+    onChunkRemoved
 }
