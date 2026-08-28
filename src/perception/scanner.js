@@ -78,20 +78,26 @@ function start(radius = 16, interval = 2000) {
     updateLocalMap(radius)
 
     scanTimer = setInterval(() => {
-        if (shouldScan(bot.entity.position)) {
-            updateLocalMap(radius)
-        }
+        runScannerTask('movement scan', () => {
+            if (shouldScan(bot.entity.position)) {
+                updateLocalMap(radius)
+            }
+        })
     }, interval)
 
     correctionTimer = setInterval(() => {
-        updateLocalMap(CORRECTION_RADIUS, false)
+        runScannerTask('correction scan', () => {
+            updateLocalMap(CORRECTION_RADIUS, false)
+        })
     }, CORRECTION_INTERVAL)
 
     cleanupTimer = setInterval(() => {
-        const removed = worldMap.cleanup(bot.entity.position)
-        for (const { chunkX, chunkZ } of removed) {
-            storage.deleteChunk(chunkX, chunkZ)
-        }
+        runScannerTask('cleanup', () => {
+            const removed = worldMap.cleanup(bot.entity.position)
+            for (const { chunkX, chunkZ } of removed) {
+                storage.deleteChunk(chunkX, chunkZ)
+            }
+        })
     }, CLEANUP_INTERVAL)
 
     console.log('[scanner] scan started')
@@ -116,6 +122,14 @@ function stop() {
 
 function shouldScan(position) {
     return lastScanPosition === null || position.distanceTo(lastScanPosition) > MOVE_THRESHOLD
+}
+
+function runScannerTask(label, task) {
+    try {
+        task()
+    } catch (error) {
+        console.error(`[scanner] ${label} failed:`, error)
+    }
 }
 
 function updateLocalMap(radius, updateScanPosition = true) {

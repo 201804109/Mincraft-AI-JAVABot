@@ -1,4 +1,4 @@
-const { executeAction } = require('./executor')
+const { runTool } = require('../actions/tool_api')
 
 module.exports = function(bot, parser) {
 
@@ -13,8 +13,13 @@ module.exports = function(bot, parser) {
 
         // 把聊天内容交给 parser
         try {
-            const command = await parser(message, bot)
-            await executeAction(bot, command)
+            const action = parser(message)
+
+            if (!action) {
+                return
+            }
+
+            await runTool(bot, action)
         } catch (error) {
             console.error('聊天命令执行失败:', error)
         }
