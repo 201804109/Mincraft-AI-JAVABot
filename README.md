@@ -2,101 +2,266 @@
 
 ## Project Overview
 
-Minecraft AI JavaBot 是一个基于 Mineflayer 的 Minecraft Java Edition 机器人原型。长期目标是让 AI Agent 通过受控的感知、导航和操作技能完成多步骤任务。
+Minecraft AI JavaBot 是一个基于 Mineflayer 的 Minecraft Java Edition 机器人原型。当前项目重点是建立可控、可验证的 Bot 接口：连接游戏、采集局部世界数据、维护持久化地图、分析地表、规划创造模式飞行路径，并通过结构化 Tool API 串行执行导航、放置和破坏动作。
 
-**Current implementation：** 三个正式 structured action（`navigate`、`place`、`break`）通过统一 Tool API、FIFO Action Queue、Validator 和 Executor 执行；底层已有基础移动、局部世界感知、持久化 World Map、实验性创造模式三维导航，以及单方块放置和破坏原型。当前代码中没有 LLM、自然语言理解、任务分解、Agent memory 或自主 Observe–Reason–Act 循环。
+项目目前处于 **Primitive Skills 与 World Understanding 原型阶段**，不是完整 AI Agent。代码中尚无 LLM 调用、Agent loop、长期或情景 memory、任务规划、自然语言理解或自主 Observe–Reason–Act 循环。聊天解析器只是三条固定中文命令的语法转换层。
 
-**Long-term goal：** 先稳定现有 Primitive Skills 和 Unified Tool API，再接入 LLM Agent，最后扩展探索、资源收集与自动建筑。
+长期目标是在导航、世界模型、结构化工具和动作恢复机制稳定后接入 Agent，再逐步实现多步骤任务、资源处理和自主建筑。高层能力应建立在可校验的 Tool API 上，而不是让模型直接调用 Mineflayer。
+
+## Status Legend
+
+- **Functional**：代码路径已接通，可在目标环境中使用，但不代表生产级可靠性。
+- **Experimental**：已有可运行实现，仍受模式、地图完整度或恢复能力等明显限制。
+- **Planned**：当前仓库没有对应实现。
 
 ## Current Capabilities
 
-### Bot Interface
+### Bot Connection — Functional
 
-- `mineflayer@^4.37.1`（锁文件为 `4.37.1`），Minecraft Java Edition `1.20.1`。
-- 固定连接 `127.0.0.1:25565`，用户名 `CityRobot001`，`offline` authentication。
-- `spawn` 后发送 `Hello!`，初始化 World Map、Scanner、World Sync、Movement、Flight、Navigation 和 Chat Listener。
-- 记录 `login`、`kicked`、`error`；没有配置加载、重连或优雅关闭。
+**Implemented**
 
-### Movement
+- 使用 `mineflayer@^4.37.1` 连接 Minecraft Java Edition `1.20.1`。
+- 监听 `login`、`spawn`、`kicked` 和 `error`；spawn 后发送 `Hello!` 并初始化各模块。
 
-- `forward`、`backward`、`left`、`right`、`jump`、`sneak` 基于 Mineflayer control states。
-- 支持 yaw 和底层 `lookAt(position)`。
-- `flight.flyTo()` 使用 `bot.creative.flyTo()`，仅接受整数 voxel，并转换为 `(x + 0.5, y, z + 0.5)`。
-- `basic_movement.stop()` 可清除 control states，但没有对应命令；`navigation.stop()` 是空实现。
+**Technical implementation**
 
-### Perception
+- `bot.js` 在 spawn 时初始化 Raw World Map、Surface Map、Scanner、World Sync、Movement、Flight、Navigation 和 Chat Listener。
+- 连接固定为 `127.0.0.1:25565`、`CityRobot001`、offline auth。
 
-- Scanner 遍历立方体范围内客户端已加载方块；`scan()` 同时返回 Bot 位置和实体快照。
-- 启动立即扫描半径 16；每 2 秒检查位置，移动超过 8 格时再扫描半径 16；每 5 秒校正半径 8；每 5 分钟清理地图。
-- Scanner 的定时任务错误会被记录并隔离，不会因单次扫描或清理失败而停止后续定时执行。
-- `blockUpdate` 增量更新内存地图，但不立即持久化。
+**Limitations**
 
-### World Map and Spatial Intelligence
+- 没有配置加载、重连、优雅关闭、server/world/dimension 隔离或 sender authorization。
 
-- X/Z 按 16×16 chunk 索引；block 保存 `type`、`state`、`lastSeen`、`confidence`。
-- `air`、`cave_air`、`void_air` 为 `AIR`，其余观测类型统一为 `SOLID`；缺失或过期为 `UNKNOWN`。
-- confidence 从 1 在默认 30 分钟内线性衰减到 0；过期 block 在读取时移除。
-- chunk 以紧凑 JSON 同步写入临时文件后原子替换到 `maps/chunks/<chunkX>_<chunkZ>.json`；单 chunk 成功保存后有 10 秒写入冷却，启动时加载 Bot 周围 128 格。
-- chunk 保存、加载和删除错误会被记录并隔离，避免持久化失败直接导致 Bot 进程崩溃。
-- 距 Bot 超过 512 格且超过有效期未观察或访问的 chunk 会从内存和磁盘删除。
-- `data/world_map.json` 是旧版数据；当前 `storage.load()` 返回空对象，启动流程不会导入它。
-- Spatial 使用 0.6×1.8 AABB、0.1 格扫掠采样和多轴中间位置检查；`UNKNOWN` 与 `SOLID` 均不可通过。
+### Movement — Functional low-level primitives
 
-### Navigation
+**Implemented**
 
-- A* 搜索 4 个水平、4 个水平对角和 2 个垂直邻居；欧氏 heuristic，对角代价 `√2`，其他为 1。
-- 最大搜索距离 128 格，最多访问 100,000 节点。
-- 规划前检查目标周围半径 8；`UNKNOWN` 超过 10% 时请求目标处半径 16 的 Scanner 扫描。
-- 路径按方向及直线碰撞结果压缩，通过 creative flight 逐点执行；直线步长 0.5，waypoint threshold 1.5。
-- 每 250 ms 轮询；5 秒无至少 0.05 格进展会失败，约 2 秒内移动不足 0.1 格判定 blocked。
-- 路径失效会返回 `REPLAN_REQUIRED` 并维护最多 3 次计数，但 `navigation.navigateTo()` 不会重新调用 planner，真正的 replanning **尚未实现**。
-- 定位为面向创造模式飞行的 **Experimental prototype**，不支持生存模式步行、重力、跳跃、落脚面或掉落风险。
+- 前后左右、跳跃、潜行、停止、按 yaw 转向和 `lookAt`。
+- 创造模式 `flyTo()`，将整数 voxel 坐标转换到方块中心的 world position。
 
-### Block Manipulation and Items
+**Technical implementation**
 
-- `reachability` 计算眼睛到方块 AABB 的最短距离，默认范围 5 格。
-- 单方块放置检查空目标、六向支撑、身体重叠、距离和 0.1 格步进视线；必要时在 4 格内寻找有地面且身体空间为空的站位并导航。放置后等待 200 ms 验证名称。
-- Item Manager 可计数和装备物品；若缺少物品且 creative inventory 可用，会向 hotbar slots 36–44 补充并最多等待 5 秒确认。
-- 单方块破坏检查目标、reachability、身体重叠和视线；必要时寻找 4 格内站位并导航，调用 `bot.dig()` 后等待 200 ms 验证为空气。
-- 连续操作、自动目标选择、材料收集、蓝图、build order、建筑规划和恢复均未实现。
+- 基础移动使用 Mineflayer control states；飞行使用 `bot.creative.flyTo()`。
+
+**Limitations**
+
+- 基础移动没有作为聊天 Tool 暴露，也没有组合步行控制器。
+- 飞行要求创造模式能力；没有模式/权限预检，`navigation.stop()` 也未实现有效取消。
+
+### Perception — Functional prototype
+
+**Implemented**
+
+- 扫描 Bot 周围立方体范围内的已加载方块，并返回当前位置和实体快照。
+- 初始半径 16 扫描；每 2 秒检查位移，移动超过 8 格后重扫；每 5 秒进行半径 8 校正；每 5 分钟清理地图。
+- 监听 Mineflayer `blockUpdate`，增量更新内存地图。
+
+**Technical implementation**
+
+- Scanner 对坐标逐点调用 `bot.blockAt()`；定时任务有错误隔离。
+- `scanAt()` 可请求指定区域，但仍只能读取客户端已经加载的数据。
+
+**Limitations**
+
+- 扫描不会主动加载远端 chunk，且立方体逐 voxel 扫描成本较高。
+- 实体只存在于单次 `scan()` 返回值中，没有持久化、跟踪、空间索引或 Tool 查询接口。
+- `blockUpdate` 不立即触发 Raw Map 写盘，但会通过地图事件更新派生 Surface Map。
+
+### Raw World Representation — Functional prototype
+
+**Implemented**
+
+- 以 X/Z 方向 16×16 chunk 组织方块观测，保存 `type`、`state`、`lastSeen` 和动态 `confidence`。
+- 三种 air 类型记为 `AIR`；其他方块记为 `SOLID`；缺失或过期数据为 `UNKNOWN`。
+- 默认 30 分钟线性置信度衰减；远于 512 格且过期的 chunk 会从内存和磁盘清理。
+- 启动时加载 Bot 周围 128 格的 chunk 文件。
+
+**Technical implementation**
+
+- Raw chunk 保存到 `maps/chunks/`，使用临时文件后 rename；单 chunk 保存有 10 秒冷却，存储错误不会直接终止进程。
+
+**Limitations**
+
+- 这是观测缓存，不是完整世界数据库；未区分流体、门、台阶、植物或真实 collision shape。
+- 同步文件 I/O；无 schema version、数据库事务和 world/dimension namespace。
+- `data/world_map.json` 是旧格式遗留数据，当前启动流程不会导入。
+
+### Surface Map and Area Analysis — Functional read-only queries
+
+**Implemented**
+
+- 从 Raw World Map 为每个 X/Z column 派生最高非空气方块，并持久化到 `maps/surface/`。
+- Raw block/chunk 更新会标记 column dirty；100 ms 合并 column 更新、250 ms 合并 surface chunk 保存。
+- 可按矩形 bounds 加载内存或磁盘中的 Surface Map，构建可配置分辨率的 Area Grid。
+- Area Analyzer 计算覆盖率、未知/空 column、主导方块、方块计数、高度范围/平均值/众数，并按相邻同类主导方块聚合 region。
+
+**Technical implementation**
+
+- `src/map_analysis/surface/` 负责 column 分析、派生地图和 format version 2 的紧凑 chunk 存储。
+- `src/map_analysis/area/` 负责跨 chunk 加载、栅格聚合和 region 连通分析。
+
+**Limitations**
+
+- Surface 与 Area API 已接入 AI Interface Query，但没有接入聊天命令、Navigation 或 LLM Agent。
+- “地表”仅表示已观测 column 中最高的非空气方块，不能识别洞穴、建筑语义、生物群系、危险、可通行性或对象。
+- 覆盖率取决于 Raw Map 的局部观测；unknown 不会被推断补全。
+
+### Raw World Queries — Functional read-only prototype
+
+**Implemented**
+
+- `voxel.getBlock` 查询单个已观测 voxel。
+- `voxel.getVolume` 查询三维 bounds，返回已知非空气方块并统计 unknown、air 和 coverage。
+- `voxel.getSurroundings` 根据 Bot 当前整数 voxel 位置查询局部三维环境。
+
+**Technical implementation**
+
+- `src/perception/api.js` 只读取现有 Raw World Map，不调用 Scanner，也不保存地图。
+- 单次 Volume 最多查询 32,768 个 voxel；air 只计数，不进入 `blocks` 数组。
+
+**Limitations**
+
+- 只能读取内存 Raw Map 中当前已观测且未过期的数据，不会按请求主动加载或扫描 Minecraft。
+- 不提供方块语义、结构识别、实体观察、通行性分析或路径规划。
+
+### Spatial Checks — Functional prototype
+
+**Implemented**
+
+- 使用 0.6×1.8 Bot AABB 判断占用空间。
+- 以 0.1 格间隔进行扫掠采样，并检查多轴移动的中间组合以避免简单穿角。
+
+**Technical implementation**
+
+- `spatial.canOccupy()` 和 `spatial.canMove()` 查询 Raw World Map；任何非 `AIR` 状态均阻塞。
+
+**Limitations**
+
+- `UNKNOWN` 保守地视为不可通行；碰撞模型未使用 Minecraft 真实方块形状。
+- 没有地面支撑、重力、落差、流体、伤害或实体碰撞模型。
+
+### Navigation — Experimental
+
+**Implemented**
+
+- A* 搜索 4 个水平、4 个水平对角和 2 个垂直邻居。
+- 欧氏 heuristic；水平对角代价为 `sqrt(2)`，其他邻居代价为 1。
+- 最大搜索距离 128 格、最多访问 100,000 节点。
+- 规划前检查目标周围半径 8 的 unknown ratio；超过 10% 时尝试目标处半径 16 扫描。
+- 路径按方向和直线碰撞结果压缩，再使用 creative flight 逐 waypoint 执行。
+- 执行时检查路径变化、移动进展和 blocked 状态。
+
+**Technical implementation**
+
+- `planner.js` 负责 A*；`path_follow.js` 负责压缩、碰撞复查、进展监控和飞行；`navigation.js` 负责地图准备和组合调用。
+
+**Limitations**
+
+- 仅适合创造模式三维飞行，不支持生存模式步行、跳跃、重力、落脚面和掉落风险。
+- 主动扫描不能加载远端 chunk；unknown 比例过高时导航直接失败。
+- 路径失效会返回 `REPLAN_REQUIRED` 并记录最多 3 次请求，但上层没有重新调用 planner，真正 replanning 尚未闭环。
+- Queue 没有 timeout；底层飞行取消不可靠。
+
+### AI Interface, Action Queue and Queries — Functional prototype
+
+**Implemented**
+
+- 三种 structured action：`navigate`、`place`、`break`。
+- Validator 检查 action、有限坐标、place/break 的整数坐标及 place 方块名称。
+- Surface、Area 与 Raw Voxel 只读查询通过同一 AI Interface 分发。
+- AI 输入统一为 `{ type, name, parameters }`；返回统一为 `{ success, type, name, reason, data }`。
+- Action 进入进程内 FIFO Promise Queue；Query 直接执行，不进入动作队列。
+
+**Technical implementation**
+
+- 统一入口为 `src/ai_interface/index.js` 的 `handle()`。
+- Action 由 `ai_interface/actions/` 执行，Query 由 `ai_interface/queries/` 调用 Surface、Area 或 Perception API。
+- Queue 会把执行异常转换为失败结果，并保证单次 rejection 不破坏后续队列链。
+
+**Limitations**
+
+- Interface 集合固定且较小；没有正式 schema、版本、优先级、timeout、取消、重试、幂等键或持久化队列。
+- 一个永久不结束的动作会阻塞其后的所有动作。
+- 执行结果只写控制台，不回复 Minecraft 聊天。
+
+### Block Manipulation — Experimental
+
+**Implemented**
+
+- 单方块放置：检查空目标、六向支撑、身体重叠、距离和视线；必要时搜索半径 4 内安全站位并导航；操作后验证方块名称。
+- 单方块破坏：检查目标、身体重叠、reachability 和视线；必要时搜索安全站位并导航；`bot.dig()` 后验证目标为空气。
+
+**Technical implementation**
+
+- 交互距离基于眼睛到方块 AABB 的最短距离，默认最大 5 格；视线以 0.1 格采样。
+
+**Limitations**
+
+- 仅支持显式坐标的单方块动作；支撑、空气和碰撞判断是简化模型。
+- 安全站位要求脚下为非空气方块，与 creative-flight 导航语义并不完全一致。
+- 没有工具选择、挖掘成本、掉落处理、连续操作、build order、蓝图或失败恢复。
+
+### Item Handling — Experimental / creative-only fallback
+
+**Implemented**
+
+- 统计物品数量、检查库存并装备指定物品。
+- 缺少物品时，如果 creative inventory 可用，则向 slots 36–44 补充物品并等待最多 5 秒确认。
+
+**Technical implementation**
+
+- 支持普通 registry name 和 `minecraft:` 前缀；优先复用同类 stack、空 hotbar，最后使用已占用 hotbar。
+
+**Limitations**
+
+- 没有生存模式采集、容器、合成、材料预算或库存规划。
+- creative fallback 可能覆盖无关 hotbar slot；`prismarine-item` 和 `vec3` 是 Mineflayer 的传递依赖，未在 `package.json` 显式声明。
 
 ## Commands
 
-以下是 `src/chat/parser.js` 当前识别的全部命令。未知命令静默忽略；错误与结果只输出到控制台，不回复 Minecraft 聊天。
+`src/chat/parser.js` 当前只识别以下命令。未知命令静默忽略；参数错误或执行结果只输出到控制台。
 
-| Command | Example | Description |
+| Command | Example | Behavior |
 | --- | --- | --- |
-| `导航 <x> <y> <z>` | `导航 10 80 -5` | 实验性 A* + creative flight；目标按 voxel 向下取整 |
-| `放置 <x> <y> <z> <方块名称>` | `放置 10 65 20 stone` | 生成 `place` action，在整数坐标放置一块 |
-| `破坏 <x> <y> <z>` | `破坏 10 65 20` | 生成 `break` action，破坏整数坐标处方块 |
-
-玩家聊天只暴露以上三个 Agent-level Tool。Movement、jump、turn、sneak 和 direct flight 仍作为内部底层能力保留，但不再是玩家命令。
+| `导航 <x> <y> <z>` | `导航 10 80 -5` | 创建 `navigate` action；允许有限数值，planner 最终向下取整到 voxel |
+| `放置 <x> <y> <z> <方块名称>` | `放置 10 65 20 stone` | 创建整数坐标的单方块 `place` action |
+| `破坏 <x> <y> <z>` | `破坏 10 65 20` | 创建整数坐标的单方块 `break` action |
 
 ## Architecture
 
 ```text
-Minecraft Player ──► chat/listener.js ──► chat/parser.js
-                                             │
-                                             ├── navigate action
-                                             ├── place action
-                                             └── break action
-Future AI Agent（planned）──► structured action ─┘
-                                             ▼
-                                     actions/tool_api.js
-                                             ▼
-                                  actions/action_queue.js（FIFO）
-                                             ▼
-                                     actions/executor.js
-                                       ├──► validator / result
-                                       └──► navigation / block skills / item manager
-
-Minecraft loaded world ──► scanner ──► in-memory World Map ──► chunk storage
-Minecraft blockUpdate ──► world_sync ────────────┘
+Minecraft server
+  ├─ chat ──► listener ──► fixed-command parser ──┐
+  │                                               ▼
+  │                Future Agent (planned) ──► AI Interface
+  │                                      { type, name, parameters }
+  │                                      ├─ action ──► FIFO Queue
+  │                                      │              ▼
+  │                                      │       Validator + Executor
+  │                                      │       ├─ Navigation
+  │                                      │       ├─ Block Place/Break
+  │                                      │       └─ Item Manager
+  │                                      └─ query ──► Voxel/Surface/Area API
+  │
+  ├─ loaded blocks ──► Scanner ───────────────┐
+  └─ blockUpdate ────► World Sync ────────────┤
                                                   ▼
-                                      spatial ──► planner / path_follow
+                                      Raw World Map (in memory)
+                                        ├─► maps/chunks/
+                                        ├─► Spatial checks ──► A* / Path Follower
+                                        └─► Surface Map ──► maps/surface/
+                                                              │
+                                                              ▼
+                                                    Area Grid / Regions
 ```
 
-Parser 是不依赖 Bot 或 Skill 的纯文本解析器。玩家的 `navigate`、`place`、`break` 与未来 AI 产生的同类 structured action 都从 `runTool()` 开始，共用 FIFO Queue、Validator、Executor 和 Unified Result 边界。
+### Runtime data flow
+
+1. Spawn 初始化地图与订阅关系，然后加载附近 Raw Map 和所有已保存 Surface Map chunk。
+2. Scanner 与 `blockUpdate` 写入 Raw World Map。
+3. Raw Map 事件将对应 Surface column/chunk 标记为 dirty，合并重算并持久化。
+4. 导航读取 Raw Map；Surface/Area Query 读取持久化二维投影与区域摘要，二者没有语义集成。
+5. 聊天 Parser 将命令转换为统一 Action 请求；未来 Agent 可通过同一入口提交 Action 或 Query。
 
 ## Repository Structure
 
@@ -105,141 +270,90 @@ Parser 是不依赖 Bot 或 Skill 的纯文本解析器。玩家的 `navigate`�
 ├── bot.js
 ├── config/navigation_config.js
 ├── src/
-│   ├── actions/{tool_api,action_queue,executor,validator,result}.js
+│   ├── ai_interface/
+│   │   ├── index.js
+│   │   ├── result.js
+│   │   ├── actions/{action_queue,executor,validator}.js
+│   │   └── queries/executor.js
 │   ├── chat/{listener,parser}.js
-│   ├── perception/
-│   │   ├── scanner.js
-│   │   ├── map.js
-│   │   ├── storage.js
-│   │   ├── world_sync.js
-│   │   └── spatial.js
+│   ├── perception/{scanner,map,storage,world_sync,spatial,api}.js
+│   ├── map_analysis/
+│   │   ├── surface/{analyzer,map,storage,api}.js
+│   │   └── area/{area_loader,area_grid,area_analyzer,api}.js
 │   └── skills/
 │       ├── move/{basic_movement,coordinate,flight,planner,path_follow,navigation}.js
 │       ├── block_manipulation/{reachability,block_place,block_break}.js
 │       └── item/item_manager.js
-├── maps/chunks/                 # 当前持久化 chunk
-├── data/world_map.json          # 旧版数据，当前不加载
+├── maps/chunks/                 # Raw World Map runtime data
+├── maps/surface/                # Derived Surface Map runtime data
+├── data/world_map.json          # Legacy data; not loaded by current startup
 ├── package.json
 ├── package-lock.json
-└── README.md
+├── README.md
+└── CHANGELOG.md
 ```
 
-## Implementation Details
-
-### Bot Lifecycle
-
-`bot.js` 在 `spawn` 时重置内存地图并调用兼容性的空 `storage.load()`，初始化扫描、事件同步和控制模块。实际 chunk 加载发生在 `scanner.start()`。
-
-### Chat and Commands
-
-Listener 忽略 Bot 自身消息但不授权发送者。Parser 只将三种精确中文命令转换为 structured action；Listener 再调用唯一公共入口 `runTool()`。玩家与未来外部调用者共用同一个 FIFO Queue、Validator、Executor 和 Unified Result contract。
-
-### Movement
-
-基础 control state 与 creative flight 模块仍供 Navigation 等内部 Skill 使用，但不再直接暴露为玩家聊天命令。Creative flight 没有模式/权限预检或可靠中断。
-
-### Perception and World Map
-
-Scanner 只查询 `bot.blockAt()`，不会加载远端 chunk；`scanAt()` 可能仍留下大量 `UNKNOWN`。地图是观测缓存：扫描会更新内存并按 chunk 持久化，World Sync 只更新内存。持久化采用临时文件替换、错误隔离和单 chunk 写入冷却，但写盘仍是同步 I/O。实体不持久化或跟踪。
-
-### Navigation
-
-Planner、Spatial、Path Follower 构成可运行的创造模式原型，但依赖已加载且未过期的地图。未知空间保守阻塞，active scan 只查询客户端已有数据，replanning 信号未闭环。
-
-### Block Manipulation
-
-Place/Break 是单目标 primitive，实时查询局部方块；安全站位移动依赖实验性导航。站位要求下方为非空气方块，与纯飞行导航语义不完全一致。支撑和碰撞按空气/非空气简化。
-
-## Development Stage
-
-| Layer | Status | Current scope |
-| --- | --- | --- |
-| Layer 1 — Bot Interface | Functional prototype | 固定连接、聊天入口、基础控制 |
-| Layer 2 — Perception | Functional prototype | 局部扫描、事件同步、实体快照 |
-| Layer 3 — Spatial Intelligence | Functional prototype | World Map、占用/扫掠、reachability，模型简化 |
-| Layer 4 — Navigation | Experimental | A* 与执行存在；加载范围、取消、replanning 不完整 |
-| Layer 5 — Primitive Actions | Partial / Experimental | 单方块 place/break 与 creative item acquisition |
-| Layer 6 — Agent Layer | Planned | 已有 Unified Tool API；无 LLM、任务分解、memory、context |
-| Layer 7 — High-Level Tasks | Planned | 无探索、采集、自主任务或建筑系统 |
-
-项目准确处于 **Layer 5 的早期 Primitive Action prototype**：Layer 1–3 已有基础，Layer 4–5 仍实验性，尚不是 AI Agent。
+`maps/` 和 `data/` 中的 JSON 是运行/遗留数据，不是执行模块。
 
 ## Current Progress
 
-| Status | Module | Description |
+| Layer | Status | Actual scope |
 | --- | --- | --- |
-| Functional prototype | Connection / lifecycle | 固定本地离线服务器连接与模块初始化 |
-| Functional prototype | Commands / Tool API | 三个中文命令、pure Parser、统一 Executor 和 FIFO Queue |
-| Functional prototype | Perception / map | 扫描、事件同步、confidence、可靠 chunk 持久化 |
-| Functional prototype | Spatial checks | AABB、扫掠、穿角检查，语义简化 |
-| Experimental | Navigation | A*、压缩和跟随可运行；取消、远端地图、replanning 不完整 |
-| Experimental | Single-block place / break | 包含站位、视线、导航和结果验证 |
-| Partial | Item management | 计数、装备、creative hotbar 补物；非通用材料系统 |
-| Planned | Agent Layer | 已有统一 Tool API 边界，但尚无 LLM、任务分解、memory 或 context |
-| Planned | High-level tasks | 无多步骤执行、蓝图或自动建筑 |
+| Layer 1 — Bot Interface | Functional | 固定本地连接、生命周期、聊天入口、底层控制 |
+| Layer 2 — Perception | Functional prototype | 局部方块扫描、blockUpdate 同步、实体快照 |
+| Layer 3 — World Representation | Functional prototype | 分 chunk Raw Map、置信度、持久化、派生 Surface Map |
+| Layer 4 — Spatial / World Understanding | Partial | AABB/扫掠检查、地表栅格统计和 region 聚合；无语义对象或危险模型 |
+| Layer 5 — Navigation | Experimental | A*、路径压缩和 creative flight 可运行；远端感知、取消、replanning 不完整 |
+| Layer 6 — Primitive Skills / Interface | Experimental | 统一 Action/Query 入口、FIFO actions、只读 world queries、单方块操作 |
+| Layer 7 — Agent Layer | Planned | 无 LLM、Agent loop、memory、planning 或 tool-selection loop |
+| Layer 8 — High-Level Tasks | Planned | 无多步骤任务、探索、采集、蓝图或自主建筑 |
 
-## Known Limitations
-
-- 连接、身份、版本与 offline auth 硬编码；`package.json` 缺少元数据、scripts 和 engine。
-- 无 sender authorization；未知命令静默；结果不回传游戏聊天。
-- 高层 Tool 使用单 Bot FIFO Queue，但没有 timeout 或可靠 cancellation；一个永久不结束的 Action 会阻塞后续队列。
-- 导航依赖 loaded chunks；active scan 不加载远端数据；`REPLAN_REQUIRED` 不会真正重新规划。
-- 非空气方块一律 `SOLID`，未处理流体、门、台阶、可穿越方块和真实 collision shapes；`UNKNOWN` 一律阻塞。
-- 地图无 server/world/dimension 隔离；尽管已有临时文件替换、错误隔离和写入冷却，chunk 仍同步写盘，事件更新不立即保存，也没有数据库级事务。
-- 实体只有快照；无跟踪、碰撞整合或查询接口。
-- 导航只面向 creative flight；无 survival、重力、落脚、跳跃、坠落和危险模型。
-- creative Item Manager 可能占用/覆盖非目标 hotbar；无生存获取、配方或材料预算。
-- Place/Break 站位搜索依赖 loaded blocks，视线和实体碰撞简化。
-- 无连续操作、自动目标、蓝图、建筑顺序、资源收集或多步骤恢复。
-- 无测试、CI、结构化日志、重连、许可证和发布流程。
-- 直接使用的 `vec3`、`prismarine-item` 仅由 Mineflayer 传递安装，未显式声明。
+当前最准确的定位是：**Layer 1–3 已形成可工作的原型，Layer 4–6 有局部实现但仍实验性，Layer 7–8 尚未开始。**
 
 ## Roadmap
 
-### Phase 1 — Stabilize Primitive Skills
+### 1. Navigation completion
 
-- 完成 navigation replanning、可靠 cancellation 和 Queue-level timeout。
-- 加强现有 Unified Result 的错误分类、运行观测和恢复语义。
-- 增加 sender authorization、游戏内反馈和自动化测试。
-- 区分 loaded/unknown，使用真实 collision shapes，完善 survival inventory 与操作。
+- 闭环实现 `REPLAN_REQUIRED`：重新扫描、重新规划、限制总尝试次数并保留失败上下文。
+- 实现 Queue/Action timeout、可靠 cancellation 和飞行停止。
+- 区分 creative flight 与 survival walking；加入落脚面、跳跃、重力、跌落、流体和危险成本。
+- 改善 loaded/unknown 管理，避免把远端未加载数据误当作确定不可达。
 
-### Phase 2 — Agent Interface
+### 2. World understanding
 
-在现有统一、可校验的 structured action/tool boundary 上接入 Agent；Agent 不直接操作 Mineflayer：
+- 将 Raw Map、Surface Map、Area Grid 的 coverage 与 freshness 统一暴露为查询接口。
+- 引入真实 collision shapes、可通行方块类别、流体和动态实体占用。
+- 在地表统计之上增加可验证的地形/区域标签；保留 unknown，不用推断替代观测。
+- 为地图增加 server/world/dimension namespace、格式迁移和异步存储策略。
 
-```json
-{
-  "action": "navigate",
-  "position": { "x": 10, "y": 70, "z": 20 }
-}
-```
+### 3. Structured tools
 
-保持所有动作通过 `runTool()`、同一个 FIFO Queue 和受控 Executor，并在现有 `success`、`action`、`reason`、`data` contract 上扩展所需的 Agent 观测与恢复信息。
+- 为 Tool 定义明确 schema、版本、错误分类、timeout、取消、重试和观测结果。
+- 扩展只读 observation tools，并增加 inventory、move、interact 等受控工具。
+- 增加游戏内结果反馈、sender authorization、结构化日志和自动化测试。
 
-### Phase 3 — LLM Agent
+### 4. Agent integration
 
-接入自然语言、tool calling、context 和 memory，形成：
+- 在 Tool API 稳定后接入 LLM tool calling；Agent 只能通过受控工具读取和改变世界。
+- 定义短期 task context、可审计 observation 和明确停止条件。
+- 在实现前保持 Agent、memory、planning 状态为 Planned。
 
-```text
-Observe → Reason → Act → Observe
-```
+### 5. Multi-step task execution
 
-### Phase 4 — Multi-step Tasks
+- 实现任务步骤状态、前置条件、逐步验证、失败补偿、取消和恢复。
+- 首批组合任务限定为 `observe → navigate → place/break → verify`。
+- 之后再加入资源收集、容器和合成；不把固定脚本描述为通用自主能力。
 
-实现任务分解、步骤验证、取消和恢复，例如：
+### 6. Autonomous building
 
-```text
-navigate → place → verify
-```
-
-### Phase 5 — Building System
-
-在 primitive 和 Agent loop 稳定后加入 blueprint、multi-block placement、build order、材料检查、安全站位规划、验证和恢复。
+- 在 primitives 与多步骤执行稳定后加入 blueprint parsing、坐标变换和 build order。
+- 实现材料预算、安全站位规划、批量放置、局部重规划、结构验证和断点恢复。
+- 自主设计、开放世界选址与长期建造仍属于更后期目标。
 
 ## Getting Started
 
-1. 准备兼容 Minecraft Java Edition `1.20.1` 的本地服务器并允许 offline 账号。
-2. 使用 flight 和自动补物时，确保 Bot 有创造模式能力。
+1. 准备兼容 Minecraft Java Edition `1.20.1` 的本地服务器，并允许 offline 账号。
+2. 使用当前导航和自动补物功能时，确保 Bot 具有创造模式能力。
 3. 安装并启动：
 
 ```bash
@@ -247,7 +361,15 @@ npm install
 node bot.js
 ```
 
-当前没有 `npm start` script。修改连接参数需编辑 `bot.js`。
+当前没有 `npm start` script。修改连接参数需要编辑 `bot.js`。
+
+## Remaining Project Limitations
+
+- 只有基础 Voxel Query 测试；没有完整单元/集成测试、CI、结构化日志、配置系统、重连和发布流程。
+- `package.json` 只有 Mineflayer dependency，没有 scripts、engines 或项目元数据。
+- AI Interface 不是网络 API；它只是当前 Node.js 进程内的函数边界。
+- Voxel、Surface 和 Area 查询已经接入 AI Interface，但尚未接入 LLM Agent 或 Navigation。
+- 项目没有 LLM、Agent loop、memory、任务规划、多步骤执行或自主建筑实现。
 
 ## License
 

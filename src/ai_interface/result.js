@@ -1,16 +1,18 @@
-function createSuccessResult(action, data = null) {
+function createSuccessResult(type, name, data = null) {
     return {
         success: true,
-        action,
+        type,
+        name,
         reason: null,
         data
     }
 }
 
-function createFailureResult(action, reason, data = null) {
+function createFailureResult(type, name, reason, data = null) {
     return {
         success: false,
-        action,
+        type,
+        name,
         reason,
         data
     }

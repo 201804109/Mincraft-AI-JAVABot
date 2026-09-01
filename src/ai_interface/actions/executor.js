@@ -1,97 +1,102 @@
-const { placeBlock } = require('../skills/block_manipulation/block_place')
-const { breakBlock } = require('../skills/block_manipulation/block_break')
-const navigation = require('../skills/move/navigation')
+const { placeBlock } = require('../../skills/block_manipulation/block_place')
+const { breakBlock } = require('../../skills/block_manipulation/block_break')
+const navigation = require('../../skills/move/navigation')
 const {
     createSuccessResult,
     createFailureResult
-} = require('./result')
+} = require('../result')
 const { validateAction } = require('./validator')
 
-async function executeAction(bot, command) {
-    if (!command) {
-        return null
-    }
-
-    const validation = validateAction(command)
+async function executeAction(bot, name, parameters) {
+    const validation = validateAction(name, parameters)
 
     if (!validation.valid) {
-        return createFailureResult(
-            validation.action,
-            validation.reason
-        )
+        return createFailureResult('action', name, validation.reason)
     }
 
-    if (command.action === 'place') {
+    if (name === 'place') {
         try {
             const result = await placeBlock(
                 bot,
-                command.block,
-                command.position
+                parameters.block,
+                parameters.position
             )
 
             printPlaceResult(result)
 
             if (!result.success) {
                 return createFailureResult(
+                    'action',
                     'place',
                     result.reason || 'PLACE_FAILED'
                 )
             }
 
-            return createSuccessResult('place', {
+            return createSuccessResult('action', 'place', {
                 block: result.block,
                 position: result.position
             })
         } catch (error) {
             console.error('放置执行异常:', error)
-            return createFailureResult('place', 'PLACE_ERROR')
+            return createFailureResult('action', 'place', 'PLACE_ERROR')
         }
     }
 
-    if (command.action === 'break') {
+    if (name === 'break') {
         try {
-            const result = await breakBlock(bot, command.position)
+            const result = await breakBlock(bot, parameters.position)
 
             printBreakResult(result)
 
             if (!result.success) {
                 return createFailureResult(
+                    'action',
                     'break',
                     result.reason || 'BREAK_FAILED'
                 )
             }
 
-            return createSuccessResult('break', {
+            return createSuccessResult('action', 'break', {
                 position: result.position
             })
         } catch (error) {
             console.error('破坏执行异常:', error)
-            return createFailureResult('break', 'BREAK_ERROR')
+            return createFailureResult('action', 'break', 'BREAK_ERROR')
         }
     }
 
-    if (command.action === 'navigate') {
+    if (name === 'navigate') {
         try {
-            const result = await navigation.navigateTo(command.position)
+            const result = await navigation.navigateTo(parameters.position)
 
             if (result === true) {
-                return createSuccessResult('navigate', {
-                    position: command.position
+                return createSuccessResult('action', 'navigate', {
+                    position: parameters.position
                 })
             }
 
             if (result === 'REPLAN_REQUIRED') {
-                return createFailureResult('navigate', 'REPLAN_REQUIRED')
+                return createFailureResult(
+                    'action',
+                    'navigate',
+                    'REPLAN_REQUIRED'
+                )
             }
 
-            return createFailureResult('navigate', 'NAVIGATION_FAILED')
+            return createFailureResult(
+                'action',
+                'navigate',
+                'NAVIGATION_FAILED'
+            )
         } catch (error) {
             console.error('导航执行异常:', error)
-            return createFailureResult('navigate', 'NAVIGATION_ERROR')
+            return createFailureResult(
+                'action',
+                'navigate',
+                'NAVIGATION_ERROR'
+            )
         }
     }
-
-    return createFailureResult(command.action, 'UNKNOWN_ACTION')
 }
 
 function printBreakResult(result) {

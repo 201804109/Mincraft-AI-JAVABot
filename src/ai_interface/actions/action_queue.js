@@ -1,10 +1,12 @@
 const { executeAction } = require('./executor')
-const { createFailureResult } = require('./result')
+const { createFailureResult } = require('../result')
 
 let queueTail = Promise.resolve()
 
-function enqueueAction(bot, action) {
-    const execution = queueTail.then(() => executeQueuedAction(bot, action))
+function enqueueAction(bot, name, parameters) {
+    const execution = queueTail.then(() =>
+        executeQueuedAction(bot, name, parameters)
+    )
 
     queueTail = execution.then(
         () => undefined,
@@ -14,13 +16,14 @@ function enqueueAction(bot, action) {
     return execution
 }
 
-async function executeQueuedAction(bot, action) {
+async function executeQueuedAction(bot, name, parameters) {
     try {
-        return await executeAction(bot, action)
+        return await executeAction(bot, name, parameters)
     } catch (error) {
         console.error('Action Queue执行异常:', error)
         return createFailureResult(
-            action?.action ?? 'unknown',
+            'action',
+            name || 'unknown',
             'EXECUTION_ERROR'
         )
     }

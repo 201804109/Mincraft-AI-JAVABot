@@ -1,4 +1,4 @@
-const { runTool } = require('../actions/tool_api')
+const aiInterface = require('../ai_interface')
 
 module.exports = function(bot, parser) {
 
@@ -19,7 +19,12 @@ module.exports = function(bot, parser) {
                 return
             }
 
-            await runTool(bot, action)
+            const { action: name, ...parameters } = action
+            await aiInterface.handle({
+                type: 'action',
+                name,
+                parameters
+            })
         } catch (error) {
             console.error('聊天命令执行失败:', error)
         }

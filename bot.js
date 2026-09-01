@@ -7,6 +7,7 @@ const worldMap = require('./src/perception/map')
 const worldSync = require('./src/perception/world_sync')
 const storage = require('./src/perception/storage')
 const surfaceMap = require('./src/map_analysis/surface/map')
+const aiInterface = require('./src/ai_interface')
 const parser = require('./src/chat/parser')
 const chatListener = require('./src/chat/listener')
 
@@ -52,6 +53,7 @@ bot.on('spawn', ()=>{
     movement.init(bot)
     flight.init(bot)
     navigation.init(bot)
+    aiInterface.init(bot)
 
     chatListener(bot, parser)
 })
