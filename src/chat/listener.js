@@ -1,32 +1,27 @@
-const aiInterface = require('../ai_interface')
-
-module.exports = function(bot, parser) {
+module.exports = function(bot, agentRuntime) {
 
     bot.on('chat', async (username, message) => {
 
-        // 忽略机器人自己发送的消息
         if (username === bot.username) {
             return
         }
 
         console.log(`${username}: ${message}`)
 
-        // 把聊天内容交给 parser
         try {
-            const action = parser(message)
+            const result = await agentRuntime.run(message)
 
-            if (!action) {
-                return
+            if (result.success && result.text) {
+                bot.chat(result.text)
+            } else {
+                console.error(
+                    'Agent处理失败:',
+                    result.reason,
+                    result.error
+                )
             }
-
-            const { action: name, ...parameters } = action
-            await aiInterface.handle({
-                type: 'action',
-                name,
-                parameters
-            })
         } catch (error) {
-            console.error('聊天命令执行失败:', error)
+            console.error('Agent聊天失败:', error)
         }
     })
 }

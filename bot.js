@@ -8,10 +8,19 @@ const worldSync = require('./src/perception/world_sync')
 const storage = require('./src/perception/storage')
 const surfaceMap = require('./src/map_analysis/surface/map')
 const aiInterface = require('./src/ai_interface')
-const parser = require('./src/chat/parser')
+const toolRegistry = require('./src/ai_interface/tools/registry')
+const ModelClient = require('./src/agent/model_client')
+const AgentRuntime = require('./src/agent/runtime')
 const chatListener = require('./src/chat/listener')
 
 let surfaceSubscriptions = []
+
+const modelClient = new ModelClient()
+const agentRuntime = new AgentRuntime({
+    modelClient,
+    toolRegistry,
+    aiInterface
+})
 
 const bot = mineflayer.createBot({
     host: '127.0.0.1',
@@ -20,6 +29,8 @@ const bot = mineflayer.createBot({
     auth: 'offline',
     version: '1.20.1'
 })
+
+chatListener(bot, agentRuntime)
 
 
 bot.on('login', ()=>{
@@ -54,8 +65,6 @@ bot.on('spawn', ()=>{
     flight.init(bot)
     navigation.init(bot)
     aiInterface.init(bot)
-
-    chatListener(bot, parser)
 })
 
 

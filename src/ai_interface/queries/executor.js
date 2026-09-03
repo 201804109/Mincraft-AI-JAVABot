@@ -1,12 +1,15 @@
 const surfaceApi = require('../../map_analysis/surface/api')
 const areaApi = require('../../map_analysis/area/api')
 const perceptionApi = require('../../perception/api')
+const selfState = require('../../self_state')
 const {
     createSuccessResult,
     createFailureResult
 } = require('../result')
 
 const QUERY_HANDLERS = {
+    'self.getPosition': (parameters, bot) =>
+        selfState.getPosition(bot),
     'surface.getColumn': parameters =>
         surfaceApi.getColumn(parameters.x, parameters.z),
     'surface.getChunk': parameters =>

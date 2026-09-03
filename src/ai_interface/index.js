@@ -1,5 +1,6 @@
 const { enqueueAction } = require('./actions/action_queue')
 const { executeQuery } = require('./queries/executor')
+const registry = require('./tools/registry')
 const { createFailureResult } = require('./result')
 
 const REQUEST_TYPES = new Set(['action', 'query'])
@@ -17,6 +18,15 @@ async function handle(request) {
             validation.type,
             validation.name,
             validation.reason
+        )
+    }
+
+    const tool = registry.getToolDefinition(request.name)
+    if (!tool || tool.type !== request.type) {
+        return createFailureResult(
+            request.type,
+            request.name,
+            'UNKNOWN_TOOL'
         )
     }
 
