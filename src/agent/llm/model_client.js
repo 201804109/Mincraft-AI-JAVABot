@@ -1,4 +1,5 @@
 const OpenAI = require('openai')
+const { toLLMName, toInternalName } = require('./tool_name_adapter')
 
 class ModelClient {
     constructor(options = {}) {
@@ -13,7 +14,7 @@ class ModelClient {
         const deepSeekTools = tools.map(tool => ({
             type: 'function',
             function: {
-                name: tool.name,
+                name: toLLMName(tool.name),
                 description: tool.description,
                 parameters: tool.parameters
             }
@@ -29,11 +30,19 @@ class ModelClient {
 
         const message = response.choices[0].message
         const toolCalls = message.tool_calls || []
+        const assistantMessage = {
+            role: 'assistant',
+            content: message.content || ''
+        }
+        if (message.reasoning_content !== undefined) {
+            assistantMessage.reasoning_content = message.reasoning_content
+        }
 
         if (toolCalls.length === 0) {
             return {
                 type: 'text',
-                text: message.content || ''
+                text: assistantMessage.content,
+                assistantMessage
             }
         }
 
@@ -45,7 +54,15 @@ class ModelClient {
         }
 
         const call = toolCalls[0]
+        if (!call.id || !call.function || !call.function.name ||
+            (call.type && call.type !== 'function')) {
+            return { type: 'error', reason: 'INVALID_MODEL_RESPONSE' }
+        }
         let parameters
+        const internalName = toInternalName(call.function.name)
+        if (!internalName) {
+            return { type: 'error', reason: 'TOOL_NOT_ALLOWED' }
+        }
 
         try {
             parameters = JSON.parse(call.function.arguments)
@@ -56,11 +73,21 @@ class ModelClient {
             }
         }
 
+        assistantMessage.tool_calls = [{
+            id: call.id,
+            type: call.type || 'function',
+            function: {
+                name: call.function.name,
+                arguments: call.function.arguments
+            }
+        }]
+
         return {
             type: 'tool_call',
             id: call.id,
-            name: call.function.name,
-            parameters
+            name: internalName,
+            parameters,
+            assistantMessage
         }
     }
 }

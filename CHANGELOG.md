@@ -1,5 +1,15 @@
 # README Update Summary
 
+## Session Memory MVP — 2026-09-05
+
+- 新增纯内存 SessionMemory，默认保留最近 10 个完整 Turn，支持深拷贝快照和 clear。
+- Runtime 使用 Session 快照创建 Task，串行化整个请求与提交过程；Tool 失败 Result 也记录，模型错误不污染历史。
+- ModelClient 保存规范化 assistant 消息、原始 Tool arguments 和存在时的 reasoning_content。
+- bot.js 注入单一共享 Session；仍仅支持 navigate/place/break，每轮一次模型请求、最多一次工具执行。
+- 新增 6 项 node:test 模拟测试，覆盖文本/工具历史、裁剪、失败和并发；未进行真实服务器集成测试。
+
+以下为此前 README 更新记录，描述当时状态。
+
 ## Added
 
 - 记录 Surface Map、Area Grid、区域分析和 `maps/surface/` 持久化实现。

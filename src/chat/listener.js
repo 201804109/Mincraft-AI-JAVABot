@@ -11,14 +11,14 @@ module.exports = function(bot, agentRuntime) {
         try {
             const result = await agentRuntime.run(message)
 
-            if (result.success && result.text) {
-                bot.chat(result.text)
-            } else {
-                console.error(
-                    'Agent处理失败:',
-                    result.reason,
-                    result.error
-                )
+            if (
+                result.success &&
+                typeof result.agentOutput === 'string' &&
+                result.agentOutput.trim()
+            ) {
+                bot.chat(result.agentOutput)
+            } else if (!result.success) {
+                console.warn(`[Agent] Failed: ${result.reason}`)
             }
         } catch (error) {
             console.error('Agent聊天失败:', error)

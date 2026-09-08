@@ -4,9 +4,24 @@
 
 Minecraft AI JavaBot 是一个基于 Mineflayer 的 Minecraft Java Edition 机器人原型。当前项目重点是建立可控、可验证的 Bot 接口：连接游戏、采集局部世界数据、维护持久化地图、分析地表、规划创造模式飞行路径，并通过结构化 Tool API 串行执行导航、放置和破坏动作。
 
-项目目前处于 **Primitive Skills 与 World Understanding 原型阶段**，不是完整 AI Agent。代码中尚无 LLM 调用、Agent loop、长期或情景 memory、任务规划、自然语言理解或自主 Observe–Reason–Act 循环。聊天解析器只是三条固定中文命令的语法转换层。
+项目目前已接入 DeepSeek 单轮 Action Tool Calling 和纯内存 Session Memory。玩家聊天经 AgentRuntime 调用模型，每轮最多执行一个 navigate/place/break；未实现 Agent Loop、长期记忆或自主任务规划。旧 parser 文件保留，但当前聊天入口不调用它。
 
-长期目标是在导航、世界模型、结构化工具和动作恢复机制稳定后接入 Agent，再逐步实现多步骤任务、资源处理和自主建筑。高层能力应建立在可校验的 Tool API 上，而不是让模型直接调用 Mineflayer。
+长期目标是在导航、世界模型、结构化工具和动作恢复机制稳定后，逐步扩展 Agent 的多步骤任务、资源处理和自主建筑能力。高层能力通过现有 Tool API 执行。
+
+## Agent Session Memory
+
+`bot.js` 创建唯一 `SessionMemory({ maxTurns: 10 })` 并注入 Runtime。所有玩家共享这个 Session，适用于一个主要玩家控制机器人；进程重启后历史丢失。
+
+- 内部按完整 Turn 保存：文本轮为 `user + assistant`，工具轮为 `user + assistant tool_calls + tool result`。
+- Runtime 串行执行整个读取历史、模型请求、工具执行和提交过程。Task 使用深拷贝快照，本轮结束后只追加本轮消息。
+- 保留原始 `function.arguments` 字符串、匹配的 `tool_call_id` 和存在时的 `reasoning_content`。
+- Tool 返回失败 Result 也提交完整轮次；API 异常、非法 JSON、多 Tool 或未允许工具不提交历史。
+- 超过 10 轮时整轮删除最旧历史；`clear()` 清空内存。没有 token 预算或摘要。
+- 一次输入仍只请求一次模型；Tool Result 留待下一条玩家消息携带，不立即触发第二次模型请求。
+
+例如先输入“去 10 64 20”，再输入“在那里放一块 stone”，第二次请求会携带上次导航参数和结果。实际指代解析与动作是否成功仍取决于模型和 Minecraft 执行条件。
+
+运行前设置 `DEEPSEEK_API_KEY`，然后执行 `node bot.js`。运行 `npm test` 可验证文本/Tool 上下文、深拷贝、整轮裁剪、失败提交和并发串行化；这些测试使用模拟模型和执行接口，不访问真实 DeepSeek 或 Minecraft。当前 listener 只向聊天框发送成功结果，失败信息仍写控制台。
 
 ## Status Legend
 
@@ -231,9 +246,9 @@ Minecraft AI JavaBot 是一个基于 Mineflayer 的 Minecraft Java Edition 机�
 
 ```text
 Minecraft server
-  ├─ chat ──► listener ──► fixed-command parser ──┐
-  │                                               ▼
-  │                Future Agent (planned) ──► AI Interface
+  ├─ chat ──► listener ──► AgentRuntime (serial) ──► DeepSeek
+  │                          ↕ SessionMemory          │
+  │                          └── single action ──► AI Interface
   │                                      { type, name, parameters }
   │                                      ├─ action ──► FIFO Queue
   │                                      │              ▼
@@ -261,7 +276,7 @@ Minecraft server
 2. Scanner 与 `blockUpdate` 写入 Raw World Map。
 3. Raw Map 事件将对应 Surface column/chunk 标记为 dirty，合并重算并持久化。
 4. 导航读取 Raw Map；Surface/Area Query 读取持久化二维投影与区域摘要，二者没有语义集成。
-5. 聊天 Parser 将命令转换为统一 Action 请求；未来 Agent 可通过同一入口提交 Action 或 Query。
+5. 聊天经 Runtime 读取 Session 快照后请求 DeepSeek，只开放三个 Action。执行后保存完整 Tool 轮次，供下一条玩家消息使用。
 
 ## Repository Structure
 
@@ -305,7 +320,7 @@ Minecraft server
 | Layer 4 — Spatial / World Understanding | Partial | AABB/扫掠检查、地表栅格统计和 region 聚合；无语义对象或危险模型 |
 | Layer 5 — Navigation | Experimental | A*、路径压缩和 creative flight 可运行；远端感知、取消、replanning 不完整 |
 | Layer 6 — Primitive Skills / Interface | Experimental | 统一 Action/Query 入口、FIFO actions、只读 world queries、单方块操作 |
-| Layer 7 — Agent Layer | Planned | 无 LLM、Agent loop、memory、planning 或 tool-selection loop |
+| Layer 7 — Agent Layer | Experimental | DeepSeek 单轮 Action Tool Calling、最近 10 轮 Session Memory；无 Agent Loop 或自主规划 |
 | Layer 8 — High-Level Tasks | Planned | 无多步骤任务、探索、采集、蓝图或自主建筑 |
 
 当前最准确的定位是：**Layer 1–3 已形成可工作的原型，Layer 4–6 有局部实现但仍实验性，Layer 7–8 尚未开始。**
@@ -334,9 +349,8 @@ Minecraft server
 
 ### 4. Agent integration
 
-- 在 Tool API 稳定后接入 LLM tool calling；Agent 只能通过受控工具读取和改变世界。
-- 定义短期 task context、可审计 observation 和明确停止条件。
-- 在实现前保持 Agent、memory、planning 状态为 Planned。
+- 已接入单轮 Action Tool Calling 和短期 Session；后续能力仍通过受控工具扩展。
+- Observation、长期 Memory 和自主 Planning 尚未实现。
 
 ### 5. Multi-step task execution
 
@@ -365,11 +379,11 @@ node bot.js
 
 ## Remaining Project Limitations
 
-- 只有基础 Voxel Query 测试；没有完整单元/集成测试、CI、结构化日志、配置系统、重连和发布流程。
-- `package.json` 只有 Mineflayer dependency，没有 scripts、engines 或项目元数据。
+- 已有 Agent Session Memory 模拟测试；尚无真实 DeepSeek/Minecraft 自动化集成验证、CI、配置系统、重连和发布流程。
+- `package.json` 包含 Mineflayer、openai 依赖和 `npm test`；没有 engines 或完整项目元数据。
 - AI Interface 不是网络 API；它只是当前 Node.js 进程内的函数边界。
 - Voxel、Surface 和 Area 查询已经接入 AI Interface，但尚未接入 LLM Agent 或 Navigation。
-- 项目没有 LLM、Agent loop、memory、任务规划、多步骤执行或自主建筑实现。
+- 已有 LLM 和纯内存短期 Session；没有 Agent Loop、长期记忆、任务规划、多步骤执行或自主建筑实现。
 
 ## License
 

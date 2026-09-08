@@ -45,7 +45,7 @@ const TOOL_DEFINITIONS = [
     {
         name: 'self.getPosition',
         type: 'query',
-        description: 'Get current position of Minecraft bot',
+        description: 'Get the current live position of the Minecraft bot, not the player. Coordinates may be fractional.',
         parameters: {
             type: 'object',
             properties: {}
@@ -54,7 +54,7 @@ const TOOL_DEFINITIONS = [
     {
         name: 'voxel.getBlock',
         type: 'query',
-        description: 'Get a block from the observed voxel map',
+        description: 'Read one integer voxel from the existing Raw World Map; does not scan Minecraft. observed:false / UNKNOWN means no reliable observation, NOT air. lastSeen and confidence describe observation freshness.',
         parameters: {
             type: 'object',
             properties: BLOCK_POSITION_PROPERTIES,
@@ -76,7 +76,7 @@ const TOOL_DEFINITIONS = [
     {
         name: 'voxel.getSurroundings',
         type: 'query',
-        description: 'Get observed blocks surrounding the Minecraft bot',
+        description: 'Read existing Raw World Map around the floored current bot position; no active scan. Use horizontalRadius <= 8 and verticalRadius <= 4 for Agent requests. coverage < 1 is incomplete knowledge, not failure; blocks omit air and unknown voxels.',
         parameters: {
             type: 'object',
             properties: {
@@ -95,7 +95,7 @@ const TOOL_DEFINITIONS = [
     {
         name: 'surface.getColumn',
         type: 'query',
-        description: 'Get surface information for one world column',
+        description: 'Read a cached Surface column without scanning. top is only the highest observed non-air block, not guaranteed ground, roof, safe footing or full world height. observed:false means unknown. Surface data may be stale and has no freshness timestamp.',
         parameters: {
             type: 'object',
             properties: {
@@ -133,7 +133,7 @@ const TOOL_DEFINITIONS = [
     {
         name: 'area.getAreaSummary',
         type: 'query',
-        description: 'Get a summarized analysis of a surface area',
+        description: 'Summarize existing Surface Map, without scanning: coverage, dominantBlock, height and regions. Agent bounds must have inclusive width <= 64 and depth <= 64. Data may be stale; coverage is observed-column coverage, not freshness. Regions are connected dominant-material cells, not semantic houses or forests.',
         parameters: {
             type: 'object',
             properties: {

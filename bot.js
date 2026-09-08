@@ -9,17 +9,20 @@ const storage = require('./src/perception/storage')
 const surfaceMap = require('./src/map_analysis/surface/map')
 const aiInterface = require('./src/ai_interface')
 const toolRegistry = require('./src/ai_interface/tools/registry')
-const ModelClient = require('./src/agent/model_client')
+const ModelClient = require('./src/agent/llm/model_client')
 const AgentRuntime = require('./src/agent/runtime')
+const SessionMemory = require('./src/agent/memory/session_memory')
 const chatListener = require('./src/chat/listener')
 
 let surfaceSubscriptions = []
 
 const modelClient = new ModelClient()
+const sessionMemory = new SessionMemory({ maxTurns: 10 })
 const agentRuntime = new AgentRuntime({
     modelClient,
     toolRegistry,
-    aiInterface
+    aiInterface,
+    sessionMemory
 })
 
 const bot = mineflayer.createBot({
