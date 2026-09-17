@@ -1,7 +1,9 @@
-const { enqueueAction } = require('./actions/action_queue')
-const { executeQuery } = require('./queries/executor')
+const { enqueueAction } = require('./runtime/action_queue')
 const registry = require('./tools/registry')
-const { createFailureResult } = require('./result')
+const {
+    createSuccessResult,
+    createFailureResult
+} = require('./result')
 
 const REQUEST_TYPES = new Set(['action', 'query'])
 
@@ -43,6 +45,29 @@ async function handle(request) {
     }
 
     return executeQuery(request.name, request.parameters, bot)
+}
+
+function executeQuery(name, parameters, queryBot = null) {
+    const tool = registry.getToolModule(name)
+
+    if (!tool) {
+        return createFailureResult('query', name, 'UNKNOWN_QUERY')
+    }
+
+    try {
+        return createSuccessResult(
+            'query',
+            name,
+            tool.execute({ bot: queryBot, parameters })
+        )
+    } catch (error) {
+        console.error(`Query执行失败 (${name}):`, error)
+        return createFailureResult(
+            'query',
+            name,
+            error?.code || 'INVALID_QUERY_PARAMETERS'
+        )
+    }
 }
 
 function validateRequest(request) {

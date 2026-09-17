@@ -4,7 +4,7 @@
 
 Minecraft AI JavaBot 是一个基于 Mineflayer 的 Minecraft Java Edition 机器人原型。当前项目重点是建立可控、可验证的 Bot 接口：连接游戏、采集局部世界数据、维护持久化地图、分析地表、规划创造模式飞行路径，并通过结构化 Tool API 串行执行导航、放置和破坏动作。
 
-项目目前已接入 DeepSeek 单轮 Action Tool Calling 和纯内存 Session Memory。玩家聊天经 AgentRuntime 调用模型，每轮最多执行一个 navigate/place/break；未实现 Agent Loop、长期记忆或自主任务规划。旧 parser 文件保留，但当前聊天入口不调用它。
+项目目前已接入 DeepSeek Agent Loop 和纯内存 Session Memory。玩家聊天统一经 AgentRuntime 选择并串行执行可用 Tool；未实现长期记忆或自主任务规划。
 
 长期目标是在导航、世界模型、结构化工具和动作恢复机制稳定后，逐步扩展 Agent 的多步骤任务、资源处理和自主建筑能力。高层能力通过现有 Tool API 执行。
 
@@ -232,15 +232,9 @@ Minecraft AI JavaBot 是一个基于 Mineflayer 的 Minecraft Java Edition 机�
 - 没有生存模式采集、容器、合成、材料预算或库存规划。
 - creative fallback 可能覆盖无关 hotbar slot；`prismarine-item` 和 `vec3` 是 Mineflayer 的传递依赖，未在 `package.json` 显式声明。
 
-## Commands
+## Chat control
 
-`src/chat/parser.js` 当前只识别以下命令。未知命令静默忽略；参数错误或执行结果只输出到控制台。
-
-| Command | Example | Behavior |
-| --- | --- | --- |
-| `导航 <x> <y> <z>` | `导航 10 80 -5` | 创建 `navigate` action；允许有限数值，planner 最终向下取整到 voxel |
-| `放置 <x> <y> <z> <方块名称>` | `放置 10 65 20 stone` | 创建整数坐标的单方块 `place` action |
-| `破坏 <x> <y> <z>` | `破坏 10 65 20` | 创建整数坐标的单方块 `break` action |
+玩家只需要在 Minecraft 聊天中输入自然语言目标。聊天消息统一交给 AgentRuntime；不存在绕过 Agent、直接解析并执行导航、放置或破坏命令的入口。
 
 ## Architecture
 
@@ -248,7 +242,7 @@ Minecraft AI JavaBot 是一个基于 Mineflayer 的 Minecraft Java Edition 机�
 Minecraft server
   ├─ chat ──► listener ──► AgentRuntime (serial) ──► DeepSeek
   │                          ↕ SessionMemory          │
-  │                          └── single action ──► AI Interface
+  │                          └── sequential tools ──► AI Interface
   │                                      { type, name, parameters }
   │                                      ├─ action ──► FIFO Queue
   │                                      │              ▼
@@ -288,9 +282,9 @@ Minecraft server
 │   ├── ai_interface/
 │   │   ├── index.js
 │   │   ├── result.js
-│   │   ├── actions/{action_queue,executor,validator}.js
-│   │   └── queries/executor.js
-│   ├── chat/{listener,parser}.js
+│   │   ├── runtime/{action_queue,action_validator}.js
+│   │   └── tools/{registry,actions,queries}/
+│   ├── chat/listener.js
 │   ├── perception/{scanner,map,storage,world_sync,spatial,api}.js
 │   ├── map_analysis/
 │   │   ├── surface/{analyzer,map,storage,api}.js

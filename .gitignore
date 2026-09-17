@@ -18,3 +18,7 @@ Thumbs.db
 
 # Temporary files
 tmp/
+
+# Minecraft map cache
+maps/
+data/

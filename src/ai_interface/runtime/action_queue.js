@@ -1,5 +1,6 @@
-const { executeAction } = require('./executor')
+const registry = require('../tools/registry')
 const { createFailureResult } = require('../result')
+const { validateAction } = require('./action_validator')
 
 let queueTail = Promise.resolve()
 
@@ -18,7 +19,14 @@ function enqueueAction(bot, name, parameters) {
 
 async function executeQueuedAction(bot, name, parameters) {
     try {
-        return await executeAction(bot, name, parameters)
+        const validation = validateAction(name, parameters)
+
+        if (!validation.valid) {
+            return createFailureResult('action', name, validation.reason)
+        }
+
+        const tool = registry.getToolModule(name)
+        return await tool.execute({ bot, parameters })
     } catch (error) {
         console.error('Action Queue执行异常:', error)
         return createFailureResult(
