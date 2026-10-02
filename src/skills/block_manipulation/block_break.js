@@ -39,19 +39,8 @@ async function breakBlock(bot, targetPosition) {
     console.log('Found:')
     console.log(block.name)
 
-    await lookAtTarget(bot, targetCenter)
-
     console.log('Checking reachability...')
-    const initialReachability = checkBlockReachability(bot, block)
-    const currentPositionSafe = !bodyOverlapsTarget(bot.entity.position, target)
-    const currentTargetVisible = hasLineOfSight(
-        bot,
-        bot.entity.position.offset(0, PLAYER_EYE_HEIGHT, 0),
-        targetCenter,
-        target
-    )
-
-    if (!initialReachability.reachable || !currentPositionSafe || !currentTargetVisible) {
+    if (!canBreakFromCurrentPosition(bot, target, targetCenter, block)) {
         console.log('Current position is not suitable, searching for a safe position...')
         const safePosition = findSafePosition(bot, target, targetCenter)
 
@@ -73,30 +62,43 @@ async function breakBlock(bot, targetPosition) {
         if (navigationResult !== true) {
             return fail('NAVIGATION_FAILED')
         }
+    }
 
-        await lookAtTarget(bot, targetCenter)
+    return breakBlockFromCurrentPosition(bot, targetPosition)
+}
 
-        block = bot.blockAt(target)
-        if (!block || isAirBlock(block)) {
-            return fail('TARGET_EMPTY')
-        }
+async function breakBlockFromCurrentPosition(bot, targetPosition) {
+    console.log('[BlockBreak]')
 
-        const finalReachability = checkBlockReachability(bot, block)
-        if (!finalReachability.reachable) {
-            return fail('OUT_OF_REACH')
-        }
+    if (!isValidBot(bot)) {
+        return fail('INVALID_BOT')
+    }
 
-        if (
-            bodyOverlapsTarget(bot.entity.position, target) ||
-            !hasLineOfSight(
-                bot,
-                bot.entity.position.offset(0, PLAYER_EYE_HEIGHT, 0),
-                targetCenter,
-                target
-            )
-        ) {
-            return fail('NO_SAFE_POSITION')
-        }
+    if (!isValidBlockPosition(targetPosition)) {
+        return fail('INVALID_TARGET_POSITION')
+    }
+
+    const target = new Vec3(targetPosition.x, targetPosition.y, targetPosition.z)
+    const targetCenter = target.offset(0.5, 0.5, 0.5)
+    let block = bot.blockAt(target)
+
+    if (!block || isAirBlock(block)) {
+        return fail('TARGET_EMPTY')
+    }
+
+    if (!canBreakFromCurrentPosition(bot, target, targetCenter, block)) {
+        return fail('CURRENT_POSITION_UNSUITABLE')
+    }
+
+    await lookAtTarget(bot, targetCenter)
+
+    block = bot.blockAt(target)
+    if (!block || isAirBlock(block)) {
+        return fail('TARGET_EMPTY')
+    }
+
+    if (!canBreakFromCurrentPosition(bot, target, targetCenter, block)) {
+        return fail('CURRENT_POSITION_UNSUITABLE')
     }
 
     console.log('Breaking...')
@@ -120,6 +122,20 @@ async function breakBlock(bot, targetPosition) {
         success: true,
         position: targetPosition
     }
+}
+
+function canBreakFromCurrentPosition(bot, target, targetCenter, block) {
+    if (bodyOverlapsTarget(bot.entity.position, target)) {
+        return false
+    }
+
+    const reachability = checkBlockReachability(bot, block)
+    if (!reachability.reachable) {
+        return false
+    }
+
+    const eyePosition = bot.entity.position.offset(0, PLAYER_EYE_HEIGHT, 0)
+    return hasLineOfSight(bot, eyePosition, targetCenter, target)
 }
 
 async function lookAtTarget(bot, targetCenter) {
@@ -318,5 +334,6 @@ function sleep(ms) {
 }
 
 module.exports = {
-    breakBlock
+    breakBlock,
+    breakBlockFromCurrentPosition
 }

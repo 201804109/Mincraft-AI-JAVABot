@@ -7,6 +7,9 @@ Tool usage rules:
 - Call at most ONE tool in each assistant response.
 - Never request multiple tool calls at the same time.
 - If the task requires multiple tools, use them sequentially.
+- When multiple block coordinates are known, prefer batch_place over repeated place calls.
+- When multiple block coordinates are known for removal, prefer batch_break over repeated break calls.
+- Do not decompose a batch operation into repeated single-block actions when a batch tool can represent the same task.
 - After each tool result, reconsider what information or action is actually needed next.
 - Do not call additional tools if the current information is already sufficient.
 - When the task is complete, return a normal short text response instead of calling another tool.

@@ -2,6 +2,8 @@ const names = new Map([
     ['navigate', 'navigate'],
     ['place', 'place'],
     ['break', 'break'],
+    ['batch_place', 'batch_place'],
+    ['batch_break', 'batch_break'],
     ['self.getPosition', 'self_getPosition'],
     ['voxel.getBlock', 'voxel_getBlock'],
     ['voxel.getVolume', 'voxel_getVolume'],

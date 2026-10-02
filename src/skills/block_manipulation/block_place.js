@@ -41,11 +41,6 @@ async function placeBlock(bot, blockName, targetPosition) {
     const target = new Vec3(targetPosition.x, targetPosition.y, targetPosition.z)
     const targetCenter = target.offset(0.5, 0.5, 0.5)
 
-    console.log('Target:')
-    console.log(formatPosition(target))
-
-    await lookAtTarget(bot, targetCenter)
-
     const targetBlock = bot.blockAt(target)
     if (!targetBlock) {
         return fail('TARGET_UNAVAILABLE')
@@ -55,16 +50,12 @@ async function placeBlock(bot, blockName, targetPosition) {
         return fail('TARGET_OCCUPIED')
     }
 
-    console.log('Checking reference block...')
-    let reference = findReferenceBlock(bot, target)
+    console.log('Target:')
+    console.log(formatPosition(target))
 
-    if (!reference) {
+    if (!findReferenceBlock(bot, target)) {
         return fail('NO_REFERENCE_BLOCK')
     }
-
-    console.log('Found reference:')
-    console.log(reference.referenceBlock.name)
-    console.log(formatPosition(reference.referenceBlock.position))
 
     if (!canPlaceFromCurrentPosition(bot, target, targetCenter)) {
         console.log('Current position is not suitable, searching for a safe position...')
@@ -88,16 +79,45 @@ async function placeBlock(bot, blockName, targetPosition) {
         if (navigationResult !== true) {
             return fail('NAVIGATION_FAILED')
         }
-
-        await lookAtTarget(bot, targetCenter)
     }
 
-    const currentTargetBlock = bot.blockAt(target)
-    if (!currentTargetBlock || !isAirBlock(currentTargetBlock)) {
+    return placeBlockFromCurrentPosition(bot, blockName, targetPosition)
+}
+
+async function placeBlockFromCurrentPosition(bot, blockName, targetPosition) {
+    console.log('[BlockPlace]')
+
+    if (!isValidBot(bot)) {
+        return fail('INVALID_BOT')
+    }
+
+    if (typeof blockName !== 'string' || blockName.length === 0) {
+        return fail('INVALID_BLOCK_NAME')
+    }
+
+    if (!isValidBlockPosition(targetPosition)) {
+        return fail('INVALID_TARGET_POSITION')
+    }
+
+    const target = new Vec3(targetPosition.x, targetPosition.y, targetPosition.z)
+    const targetCenter = target.offset(0.5, 0.5, 0.5)
+    const targetBlock = bot.blockAt(target)
+
+    if (!targetBlock) {
+        return fail('TARGET_UNAVAILABLE')
+    }
+
+    if (!isAirBlock(targetBlock)) {
         return fail('TARGET_OCCUPIED')
     }
 
-    reference = refreshReferenceBlock(bot, reference)
+    if (!canPlaceFromCurrentPosition(bot, target, targetCenter)) {
+        return fail('CURRENT_POSITION_UNSUITABLE')
+    }
+
+    console.log('Checking reference block...')
+    let reference = findReferenceBlock(bot, target)
+
     if (!reference) {
         return fail('NO_REFERENCE_BLOCK')
     }
@@ -113,6 +133,26 @@ async function placeBlock(bot, blockName, targetPosition) {
     const equipped = await itemManager.equipItem(bot, blockName)
     if (!equipped) {
         return fail('EQUIP_FAILED')
+    }
+
+    await lookAtTarget(bot, targetCenter)
+
+    const currentTargetBlock = bot.blockAt(target)
+    if (!currentTargetBlock) {
+        return fail('TARGET_UNAVAILABLE')
+    }
+
+    if (!isAirBlock(currentTargetBlock)) {
+        return fail('TARGET_OCCUPIED')
+    }
+
+    if (!canPlaceFromCurrentPosition(bot, target, targetCenter)) {
+        return fail('CURRENT_POSITION_UNSUITABLE')
+    }
+
+    reference = findReferenceBlock(bot, target)
+    if (!reference) {
+        return fail('NO_REFERENCE_BLOCK')
     }
 
     console.log('Equipped.')
@@ -159,19 +199,6 @@ function findReferenceBlock(bot, target) {
     }
 
     return null
-}
-
-function refreshReferenceBlock(bot, reference) {
-    const block = bot.blockAt(reference.referenceBlock.position)
-
-    if (!isSolidBlock(block)) {
-        return null
-    }
-
-    return {
-        referenceBlock: block,
-        faceVector: reference.faceVector
-    }
 }
 
 function canPlaceFromCurrentPosition(bot, target, targetCenter) {
@@ -373,5 +400,6 @@ function sleep(ms) {
 }
 
 module.exports = {
-    placeBlock
+    placeBlock,
+    placeBlockFromCurrentPosition
 }

@@ -11,7 +11,9 @@ const toolModules = [
     require('./queries/area_get_regions'),
     require('./actions/navigate'),
     require('./actions/place'),
-    require('./actions/break')
+    require('./actions/break'),
+    require('./actions/batch_place'),
+    require('./actions/batch_break')
 ]
 
 const tools = {}

@@ -7,7 +7,9 @@ const MAX_PROTOCOL_RETRIES = 2
 const ALLOWED_ACTION_TOOLS = new Set([
     'navigate',
     'place',
-    'break'
+    'break',
+    'batch_place',
+    'batch_break'
 ])
 const ALLOWED_QUERY_TOOLS = new Set([
     'self.getPosition',
