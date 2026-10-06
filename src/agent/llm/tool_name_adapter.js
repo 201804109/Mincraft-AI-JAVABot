@@ -13,7 +13,13 @@ const names = new Map([
     ['surface.getArea', 'surface_getArea'],
     ['area.getAreaSummary', 'area_getAreaSummary'],
     ['area.getAreaGrid', 'area_getAreaGrid'],
-    ['area.getRegions', 'area_getRegions']
+    ['area.getRegions', 'area_getRegions'],
+    ['building.plan.list', 'building_plan_list'],
+    ['building.plan.get', 'building_plan_get'],
+    ['building.plan.createDraft', 'building_plan_createDraft'],
+    ['building.plan.updateDraft', 'building_plan_updateDraft'],
+    ['building.plan.commitDraft', 'building_plan_commitDraft'],
+    ['build_from_plan', 'build_from_plan']
 ])
 const internalNames = new Map([...names].map(([internal, external]) => [external, internal]))
 

@@ -4,6 +4,7 @@ const MAX_VOLUME_BLOCKS = 4096
 const MAX_AREA_WIDTH = 64
 const MAX_AREA_DEPTH = 64
 const MAX_GRID_CELLS = 1024
+const MAX_BUILDING_PLAN_BLOCK_PAGE_SIZE = 256
 
 function isPlainObject(value) {
     return value !== null && typeof value === 'object' && !Array.isArray(value)
@@ -55,6 +56,24 @@ function getResolution(parameters) {
 // Agent-only limits; internal APIs retain their existing contracts.
 function validateQuery(name, parameters) {
     if (!isPlainObject(parameters)) return 'INVALID_QUERY_PARAMETERS'
+
+    if (name === 'building.plan.list') {
+        return ['plan', 'draft'].includes(parameters.kind)
+            ? null
+            : 'INVALID_QUERY_PARAMETERS'
+    }
+
+    if (name === 'building.plan.get') {
+        if (!['plan', 'draft'].includes(parameters.kind) || typeof parameters.planId !== 'string') {
+            return 'INVALID_QUERY_PARAMETERS'
+        }
+        const offset = parameters.offset === undefined ? 0 : parameters.offset
+        const limit = parameters.limit === undefined ? 100 : parameters.limit
+        if (!Number.isSafeInteger(offset) || offset < 0 || !Number.isSafeInteger(limit) || limit < 1) {
+            return 'INVALID_QUERY_PARAMETERS'
+        }
+        if (limit > MAX_BUILDING_PLAN_BLOCK_PAGE_SIZE) return 'AGENT_QUERY_RANGE_EXCEEDED'
+    }
 
     if (name === 'voxel.getSurroundings') {
         const { horizontalRadius: h, verticalRadius: v } = parameters

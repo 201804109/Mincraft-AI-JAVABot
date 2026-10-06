@@ -9,11 +9,17 @@ const toolModules = [
     require('./queries/area_get_summary'),
     require('./queries/area_get_grid'),
     require('./queries/area_get_regions'),
+    require('./queries/building_plan_list'),
+    require('./queries/building_plan_get'),
     require('./actions/navigate'),
     require('./actions/place'),
     require('./actions/break'),
     require('./actions/batch_place'),
-    require('./actions/batch_break')
+    require('./actions/batch_break'),
+    require('./actions/building_plan_create_draft'),
+    require('./actions/building_plan_update_draft'),
+    require('./actions/building_plan_commit_draft'),
+    require('./actions/build_from_plan')
 ]
 
 const tools = {}

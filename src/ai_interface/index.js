@@ -44,10 +44,10 @@ async function handle(request) {
         return enqueueAction(bot, request.name, request.parameters)
     }
 
-    return executeQuery(request.name, request.parameters, bot)
+    return await executeQuery(request.name, request.parameters, bot)
 }
 
-function executeQuery(name, parameters, queryBot = null) {
+async function executeQuery(name, parameters, queryBot = null) {
     const tool = registry.getToolModule(name)
 
     if (!tool) {
@@ -55,10 +55,11 @@ function executeQuery(name, parameters, queryBot = null) {
     }
 
     try {
+        const data = await tool.execute({ bot: queryBot, parameters })
         return createSuccessResult(
             'query',
             name,
-            tool.execute({ bot: queryBot, parameters })
+            data
         )
     } catch (error) {
         console.error(`Query执行失败 (${name}):`, error)

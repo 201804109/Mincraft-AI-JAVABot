@@ -9,7 +9,11 @@ const ALLOWED_ACTION_TOOLS = new Set([
     'place',
     'break',
     'batch_place',
-    'batch_break'
+    'batch_break',
+    'building.plan.createDraft',
+    'building.plan.updateDraft',
+    'building.plan.commitDraft',
+    'build_from_plan'
 ])
 const ALLOWED_QUERY_TOOLS = new Set([
     'self.getPosition',
@@ -21,7 +25,9 @@ const ALLOWED_QUERY_TOOLS = new Set([
     'surface.getArea',
     'area.getAreaSummary',
     'area.getAreaGrid',
-    'area.getRegions'
+    'area.getRegions',
+    'building.plan.list',
+    'building.plan.get'
 ])
 
 function isAllowed(name) {

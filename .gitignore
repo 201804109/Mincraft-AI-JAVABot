@@ -22,3 +22,4 @@ tmp/
 # Minecraft map cache
 maps/
 data/
+/cache/

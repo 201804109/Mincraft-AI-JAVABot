@@ -3,7 +3,11 @@ const ALLOWED_ACTIONS = new Set([
     'place',
     'break',
     'batch_place',
-    'batch_break'
+    'batch_break',
+    'building.plan.createDraft',
+    'building.plan.updateDraft',
+    'building.plan.commitDraft',
+    'build_from_plan'
 ])
 
 function validateAction(name, parameters) {
@@ -54,6 +58,26 @@ function validateAction(name, parameters) {
         return { valid: true }
     }
 
+    if (name === 'building.plan.createDraft' || name === 'building.plan.updateDraft') {
+        return isPlainObject(parameters) &&
+            typeof parameters.planId === 'string' && parameters.planId.trim().length > 0 &&
+            isPlainObject(parameters.document)
+            ? { valid: true }
+            : invalid('INVALID_ARGUMENT')
+    }
+
+    if (name === 'building.plan.commitDraft') {
+        return typeof parameters.planId === 'string' && parameters.planId.trim().length > 0
+            ? { valid: true }
+            : invalid('INVALID_ARGUMENT')
+    }
+
+    if (name === 'build_from_plan') {
+        return typeof parameters.planId === 'string' && parameters.planId.trim().length > 0
+            ? { valid: true }
+            : invalid('INVALID_ARGUMENT')
+    }
+
     return invalid('UNKNOWN_ACTION')
 }
 
@@ -70,6 +94,12 @@ function hasIntegerPosition(position) {
 
 function isObject(value) {
     return value !== null && typeof value === 'object' && !Array.isArray(value)
+}
+
+function isPlainObject(value) {
+    if (!isObject(value)) return false
+    const prototype = Object.getPrototypeOf(value)
+    return prototype === Object.prototype || prototype === null
 }
 
 function invalid(reason) {
